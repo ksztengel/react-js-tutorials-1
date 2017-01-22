@@ -54,7 +54,9 @@ export default class ToDo extends React.Component {
         <button type="button" class="btn btn-primary" onClick={this.reloadTodos.bind(this)}>Reload!</button>
         <h1>Todos</h1>
         <ul>{TodoComponents}</ul>
-        <input type="text" placeholder="Enter a new To Do" class="form-control" style={{width: '30%', display: 'inline'}} ref={(input) => this.input = input} />
+        <br></br>
+        <input type="text" placeholder="Enter a new To Do" class="form-control" style={{width: '30%'}} ref={(input) => this.input = input} />
+        <br></br>
         <button type="button" class="btn btn-success"  onClick={this.createTodos.bind(this)}>Submit!</button>
       </div>
     );
