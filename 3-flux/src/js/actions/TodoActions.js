@@ -1,11 +1,14 @@
 import dispatcher from "../dispatcher";
 
-export function createTodo(text) {
+export function createTodos(newTodo) {
+  console.log("in the Action part", newTodo);
   dispatcher.dispatch({
     type: "CREATE_TODO",
-    text,
+    newTodo,
+
   });
 }
+
 
 export function deleteTodo(id) {
   dispatcher.dispatch({

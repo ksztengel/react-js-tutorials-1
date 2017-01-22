@@ -19,9 +19,8 @@ class TodoStore extends EventEmitter {
     ];
   }
 
-  createTodo(text) {
+  createTodos(text) {
     const id = Date.now();
-
     this.todos.push({
       id,
       text,
@@ -36,9 +35,10 @@ class TodoStore extends EventEmitter {
   }
 
   handleActions(action) {
+    console.log("in the TodoStore", action);
     switch(action.type) {
       case "CREATE_TODO": {
-        this.createTodo(action.text);
+        this.createTodos(action.newTodo.text);
         break;
       }
       case "RECEIVE_TODOS": {
@@ -50,7 +50,6 @@ class TodoStore extends EventEmitter {
   }
 
 }
-
 const todoStore = new TodoStore;
 dispatcher.register(todoStore.handleActions.bind(todoStore));
 
