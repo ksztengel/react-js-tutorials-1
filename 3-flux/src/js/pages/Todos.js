@@ -11,6 +11,7 @@ export default class ToDo extends React.Component {
     this.getTodos = this.getTodos.bind(this);
     this.state = {
       todos: TodoStore.getAll(),
+      value: ""
     };
   }
 
@@ -22,15 +23,18 @@ export default class ToDo extends React.Component {
     TodoStore.removeListener("change", this.getTodos);
   }
 
-  createTodos(newTodo) {
-   newTodo = {
-     id: Date.now(),
-     text: this.input.value,
-     complete: false
-   }
-   TodoActions.createTodos(newTodo);
-   this.input.value = ''
+  createTodos() {
+  let text = this.state.value;
+   TodoActions.createTodos(text);
+
  }
+
+ handleChange(e) {
+    let text = e.target.value;
+    this.setState({
+      value: text
+    })
+  }
 
   getTodos() {
     this.setState({
@@ -55,7 +59,7 @@ export default class ToDo extends React.Component {
         <h1>Todos</h1>
         <ul>{TodoComponents}</ul>
         <br></br>
-        <input type="text" placeholder="Enter a new To Do" class="form-control" style={{width: '30%'}} ref={(input) => this.input = input} />
+        <input type="text" placeholder="Enter a new To Do" class="form-control" style={{width: '30%'}} value={this.state.value} onChange={this.handleChange.bind(this)}/>
         <br></br>
         <button type="button" class="btn btn-success"  onClick={this.createTodos.bind(this)}>Submit!</button>
       </div>
